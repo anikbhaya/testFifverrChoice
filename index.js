@@ -128,7 +128,7 @@ async function getTagObjects(proURL) {
     for(const link of info){
         const links = Object.values(link)[0]
         const keys = Object.keys(link)[0]
-        const gisData = await getTagObjects(links)
+        const gisData = await getTagObjects("http://api.scraperapi.com/?api_key=1811985f53f9df95fe8a14348bcf7dd0&url="+links)
         tillGigTagInfo[keys] = gisData
     }
     return tillGigTagInfo
@@ -170,7 +170,7 @@ async function getFiverrChoiceFn(gigTagCatData, username){
     for(const gigTitle in gigTagCatData){
         for(const source in gigTagCatData[gigTitle]){
           for(let eachTagCat of gigTagCatData[gigTitle][source]){
-          const isFiverrChoice = await isFiverrChoiceFn(eachTagCat.categoryURL, username)
+          const isFiverrChoice = await isFiverrChoiceFn("http://api.scraperapi.com/?api_key=1811985f53f9df95fe8a14348bcf7dd0&url="+eachTagCat.categoryURL, username)
           eachTagCat['isFiverrChoice'] = isFiverrChoice
           }
         
@@ -187,7 +187,7 @@ async function getFiverrChoiceFn(gigTagCatData, username){
 const finalize = async (usrnm) =>{
     const username = usrnm  // Only need to provide the username
     const profileURL = `https://www.fiverr.com/${username}`
-    const getGigData = await getGigDataFn(`${profileURL}`)
+    const getGigData = await getGigDataFn(`http://api.scraperapi.com/?api_key=1811985f53f9df95fe8a14348bcf7dd0&url=${profileURL}`)
     const getGigTagCat = await getGigTagCatFn(getGigData)
     const getFiverrChoice = await getFiverrChoiceFn(getGigTagCat, username)
 
