@@ -220,7 +220,7 @@ app.get('/', async function (req, res) {
 
 
 //start your server on port 3001
-app.listen(env.process.PORT || 5000, () => {
+app.listen(process.env.PORT || 5000, () => {
     console.log('Server Listening on port 3001');
 });
 
